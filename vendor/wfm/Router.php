@@ -22,9 +22,21 @@ class Router
     public static function dispatch($url)
     {
         if (self::matchRoute($url)) {
-            echo 'oK';
+
+            $controller = 'app\controllers\\' . self::$route['admin_prefix'] . self::$route['controller'] . 'Controller';
+            if (class_exists($controller)) {
+                $controllerObject = new $controller(self::$route);
+                $action = self::lowerCamelCase(self::$route['action'] . 'Action');
+                if (method_exists($controllerObject, $action)) {
+                    $controllerObject->$action();
+                } else {
+                    throw new \Exception("Controller {$controller}::{$action} и метод not found", 404);
+                }
+            } else {
+                throw new \Exception("Controller {$controller} not found", 404);
+            }
         } else {
-            echo 'NO';
+            throw new \Exception("Страница не найдена", 404);
         }
     }
     public static function matchRoute($url): bool
@@ -42,11 +54,11 @@ class Router
                 if (!isset($route['admin_prefix'])) {
                     $route['admin_prefix'] = '';
                 } else {
-                    $route['admin_prefix'] = '\\';
+                    $route['admin_prefix'] .= '\\';
                 }
-                debug($route);
+
                 $route['controller'] = self::upperCamelCase($route['controller']);
-                debug($route);
+                self::$route = $route;
                 return true;
             }
         }

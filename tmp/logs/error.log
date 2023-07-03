@@ -64,3 +64,23 @@
 ====================
 [2023-07-03 18:34:15] Текст ошибки: Возникла ошибка! | Файл: C:\OSPanel\domains\new-ishop.loc\public\index.php | Строка: 10
 ====================
+[2023-07-03 23:42:04] Текст ошибки: Страница не найдена | Файл: C:\OSPanel\domains\new-ishop.loc\vendor\wfm\Router.php | Строка: 28
+====================
+[2023-07-03 23:58:03] Текст ошибки: Controller app\controllers\admin\MainController not found | Файл: C:\OSPanel\domains\new-ishop.loc\vendor\wfm\Router.php | Строка: 36
+====================
+[2023-07-04 00:01:00] Текст ошибки: Controller app\controllers\admin\MainController not found | Файл: C:\OSPanel\domains\new-ishop.loc\vendor\wfm\Router.php | Строка: 36
+====================
+[2023-07-04 00:01:02] Текст ошибки: Controller app\controllers\admin\MainController not found | Файл: C:\OSPanel\domains\new-ishop.loc\vendor\wfm\Router.php | Строка: 36
+====================
+[2023-07-04 00:01:23] Текст ошибки: Controller app\controllers\MainController not found | Файл: C:\OSPanel\domains\new-ishop.loc\vendor\wfm\Router.php | Строка: 36
+====================
+[2023-07-04 00:01:54] Текст ошибки: Controller app\controllers\MainController::indexAction и метод not found | Файл: C:\OSPanel\domains\new-ishop.loc\vendor\wfm\Router.php | Строка: 33
+====================
+[2023-07-04 00:05:31] Текст ошибки: Namespace declaration statement has to be the very first statement or after any declare call in the script | Файл: C:\OSPanel\domains\new-ishop.loc\app\controllers\PageController.php | Строка: 4
+====================
+[2023-07-04 00:06:30] Текст ошибки: Namespace declaration statement has to be the very first statement or after any declare call in the script | Файл: C:\OSPanel\domains\new-ishop.loc\app\controllers\PageController.php | Строка: 4
+====================
+[2023-07-04 00:06:39] Текст ошибки: Namespace declaration statement has to be the very first statement or after any declare call in the script | Файл: C:\OSPanel\domains\new-ishop.loc\app\controllers\PageController.php | Строка: 4
+====================
+[2023-07-04 00:07:01] Текст ошибки: Namespace declaration statement has to be the very first statement or after any declare call in the script | Файл: C:\OSPanel\domains\new-ishop.loc\app\controllers\PageController.php | Строка: 4
+====================
