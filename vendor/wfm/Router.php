@@ -1,9 +1,12 @@
 <?php
 
+
 namespace wfm;
+
 
 class Router
 {
+
     protected static array $routes = [];
     protected static array $route = [];
 
@@ -11,14 +14,17 @@ class Router
     {
         self::$routes[$regexp] = $route;
     }
+
     public static function getRoutes(): array
     {
-        return  self::$routes;
+        return self::$routes;
     }
+
     public static function getRoute(): array
     {
-        return  self::$route;
+        return self::$route;
     }
+
     protected static function removeQueryString($url)
     {
         if ($url) {
@@ -29,11 +35,14 @@ class Router
         }
         return '';
     }
+
     public static function dispatch($url)
     {
         $url = self::removeQueryString($url);
         if (self::matchRoute($url)) {
-
+            if (!empty(self::$route['lang'])) {
+                App::$app->setProperty('lang', self::$route['lang']);
+            }
             $controller = 'app\controllers\\' . self::$route['admin_prefix'] . self::$route['controller'] . 'Controller';
             if (class_exists($controller)) {
 
@@ -47,22 +56,24 @@ class Router
                     $controllerObject->$action();
                     $controllerObject->getView();
                 } else {
-                    throw new \Exception("Controller {$controller}::{$action} и метод not found", 404);
+                    throw new \Exception("Метод {$controller}::{$action} не найден", 404);
                 }
             } else {
-                throw new \Exception("Controller {$controller} not found", 404);
+                throw new \Exception("Контроллер {$controller} не найден", 404);
             }
+
         } else {
             throw new \Exception("Страница не найдена", 404);
         }
     }
+
     public static function matchRoute($url): bool
     {
         foreach (self::$routes as $pattern => $route) {
-            if (preg_match("#{$pattern}#i", $url, $matches)) {
-                foreach ($matches as $key => $value) {
-                    if (is_string($key)) {
-                        $route[$key] = $value;
+            if (preg_match("#{$pattern}#", $url, $matches)) {
+                foreach ($matches as $k => $v) {
+                    if (is_string($k)) {
+                        $route[$k] = $v;
                     }
                 }
                 if (empty($route['action'])) {
@@ -73,7 +84,6 @@ class Router
                 } else {
                     $route['admin_prefix'] .= '\\';
                 }
-
                 $route['controller'] = self::upperCamelCase($route['controller']);
                 self::$route = $route;
                 return true;
@@ -82,15 +92,16 @@ class Router
         return false;
     }
 
+    // CamelCase
     protected static function upperCamelCase($name): string
     {
-        $name = str_replace('-', ' ', $name);
-        $name = ucwords($name);
-        $name = str_replace(' ', '', $name);
-        return $name;
+        return str_replace(' ', '', ucwords(str_replace('-', ' ', $name)));
     }
+
+    // camelCase
     protected static function lowerCamelCase($name): string
     {
         return lcfirst(self::upperCamelCase($name));
     }
+
 }
