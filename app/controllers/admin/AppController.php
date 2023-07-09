@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\controllers\admin;
-
 
 use app\models\admin\User;
 use app\models\AppModel;
@@ -35,5 +33,4 @@ class AppController extends Controller
                         WHERE cd.language_id = ?", [$lang['id']]);
         App::$app->setProperty("categories_{$lang['code']}", $categories);
     }
-
 }
